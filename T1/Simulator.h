@@ -11,19 +11,31 @@
 
 #include "PeriodicTask.h"
 #include "AperiodicTask.h"
+#include "PollingServer.h"
 
 typedef struct Simulator{
 	// Simulation Parameters
 	int simulationTime;
 	int amountOfAperiodicTasks;
 	int amountOfPeriodicTasks;
-	// The tasks
+	// The Polling Server Task
+	PollingServer pollingServer;
+	// All Aperiodic tasks
 	AperiodicTask aperiodicTasks[MAXIMUM_APERIODIC_TASKS];
+	// All periodic tasks
 	PeriodicTask periodicTasks[MAXIMUM_PERIODIC_TASKS];
 	
 	
 } Simulator;
 
+// Initializes a Simulator from STDIN
 Simulator createSimulatorFromSTDIN();
+
+// Begins Simulation for Current Set of Tasks
+void beginSimulation(Simulator* simulator);
+
+// Determines next task to be run
+void stepSimulation(Simulator* simulator, int step);
+
 
 #endif // SIMULATOR_H
