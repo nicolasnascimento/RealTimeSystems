@@ -1,19 +1,19 @@
 # Declaration of variables
-CC = gcc
-CC_FLAGS = -std=gnu99 -Wall
-LD_FLAGS = -pthread
+CC = g++
+CC_FLAGS = -std=c++11 -Wall
+LD_FLAGS = -lm
 
 # File names
 EXEC = run
-SOURCES = $(wildcard *.c)
-OBJECTS = $(SOURCES:.c=.o)
+SOURCES = $(wildcard *.cpp)
+OBJECTS = $(SOURCES:.cpp=.o)
 
 # Main Target
 $(EXEC): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(EXEC) $(LD_FLAGS)
+	$(CC) $(OBJECTS) $(CC_FLAGS) -o $(EXEC) $(LD_FLAGS)
 
 # To obtain object files
-%.o: %.c
+%.o: %.cpp
 	$(CC) -c $(CC_FLAGS) $< -o $@
 
 # To remove generated files
